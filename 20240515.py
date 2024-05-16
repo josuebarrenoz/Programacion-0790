@@ -1,12 +1,13 @@
-world = str(input("Bienvenido al simulacro de practica de la seccion 2\n\n Escribe una frase: "))
-num_1 = len(world.split())
+phrase = str(input("Bienvenido al simulacro de practica de la seccion 2\n\n Escribe una frase: "))
+num_1 = len(phrase.split())
+num_2 = phrase.count(" ")
 
 if num_1%3 == 0:
     print(f"Hay {num_1} palabras")
 elif num_1%2 == 0:
-    print(f"Hay {len(world)} caracateres")
+    print(f"Hay {len(phrase)-num_2} caracateres")
 else:
-    print(f"Es {10*len(world)}, que son {len(world)} caracteres multiplicado por 10")
+    print(f"Es {10*(len(phrase)-num_2)}, que son {len(phrase)} caracteres multiplicado por 10")
 
 
 
