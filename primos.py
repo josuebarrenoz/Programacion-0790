@@ -19,7 +19,7 @@ while rep:
 
     #Programa de suma de nuemero primos
     sum =0
-#    list=[] Recurso para saber si generaba primos
+    list=[] #Recurso para saber si generaba primos
     print("")
     for n in range (2,num+1):
         cont=0
@@ -29,7 +29,7 @@ while rep:
             if cont>1:
                 break
         if cont<1:
-#            list.append(n) Recurso para saber si generaba primos
+            list.append(n) #Recurso para saber si generaba primos
             sum=sum+n
 
         # Barra para medir velocidad del codigo, apoyandose en el ciclo for.
@@ -40,7 +40,7 @@ while rep:
     
     #Respuesta
     print("\n\nLa suma de los numeros primos antes de {} es {}".format(num,sum))
-    #print(list)
+    print(list)
     
     #Validacion Booleana de Repeticion de Programa
     while True:
