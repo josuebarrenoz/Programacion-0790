@@ -4,7 +4,6 @@ def ition(func):
         if rep.lower() == "y":
             func()
         elif rep.lower()=="n":
-            print("Gracias por usar el programa")
             break
         else:
             print("Escriba un valor valido")

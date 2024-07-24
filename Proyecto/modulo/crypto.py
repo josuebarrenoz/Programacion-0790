@@ -1,22 +1,19 @@
-def cesar(palabra,clave,numero):
-    abc="abcdefghijklmnopqrstuvwxyz"
+def cesar(palabra,numero,clave=0,abc="abcdefghijklmnopqrstuvwxyz"):
+    if not abc=="abcdefghijklmnopqrstuvwxyz":
+        abc2="abcdefghijklmnopqrstuvwxyz"
+    else:
+        abc2==abc
     cifrado=""
     for i in range (len(palabra)):
         try:
-            cifrado=cifrado+abc[(abc.index(palabra[i])+(((-1)**numero)*(clave)))%len(abc)]
+            cifrado+=abc2[(abc.index(palabra[i])+(((-1)**numero)*(clave)))%len(abc)]
         except ValueError:
-            cifrado=cifrado+palabra[i]
+            cifrado+=palabra[i]
+    return cifrado
 
-    if numero == 1:
-        opcion = "Cifrada"
-    else:
-        opcion = "Descifrada"
-    return print(f"\nLa palabra {opcion} es {cifrado}")
-
-def cod_primos(palabra):
-    abc="abcdefghijklmnopqrstuvwxyz"
+def primos(palabra,numero,abc="abcdefghijklmnopqrstuvwxyz"):
+    palabra+=" "
     primos=[]
-    cifrado=""
     index = 0
     num=2
 
@@ -32,101 +29,81 @@ def cod_primos(palabra):
             index+=1
         num+=1
 
-        for i in range (len(palabra)):
-            try:
-                cifrado=cifrado+str(primos[abc.index(palabra[i])])
-            except ValueError:
-                cifrado=cifrado+palabra[i]
+    cifrado=""
+    if numero == 1:
+        return cod_primos(palabra,abc,primos,cifrado)
+    else:
+        return descod_primos(palabra,abc,primos,cifrado)
+
+def cod_primos(palabra,abc,primos,cifrado):
+    for i in range (len(palabra)):
+        try:
+            cifrado+=str(primos[abc.index(palabra[i])])
             try:
                 if not(isinstance((abc.index(palabra[(i+1)%(len(palabra))])),str)):
                     cifrado=cifrado+"-"
             except ValueError:
                 pass
-        return print(f"\nLa palabra cifrada es {cifrado}")
+        except ValueError:
+            cifrado+=palabra[i]
+    return cifrado
 
-"""
-def descod_primos(palabra):
-    #Variables
-    descifrado_list=[]
-    descifrado=""
-
-
-    #Validar la palabra y Agarra la palabra y ponerlo en una lista
-    while True:
-        cont=0
-        palabra_list=[]
-        palabra = input("\nEscribe una palabra a descifrar: ")
-        #magic
-        palabra=" "+palabra+" "
-
-        #Enlistamiento
-        for i in range (len(palabra)):
-            if (palabra[i].isnumeric() and palabra[(i+1)%len(palabra)].isnumeric() and palabra[(i+2)%len(palabra)].isnumeric()):
-                palabra_list.append(palabra[i]+palabra[(i+1)%len(palabra)]+palabra[(i+2)%len(palabra)])
-            elif (palabra[i-1].isnumeric() and palabra[(i)%len(palabra)].isnumeric() and palabra[(i+1)%len(palabra)].isnumeric()):
-                pass
-            elif (palabra[i-2].isnumeric() and palabra[(i-1)%len(palabra)].isnumeric() and palabra[(i)%len(palabra)].isnumeric()):
-                pass
-            elif (palabra[i].isnumeric() and palabra[(i+1)%len(palabra)].isnumeric()):
-                palabra_list.append(palabra[i]+palabra[(i+1)%len(palabra)])
-            elif (palabra[i].isnumeric() and palabra[(i-1)%len(palabra)].isnumeric()):
-                pass
-            else:
-                palabra_list.append(palabra[i])
-
-            #Verificacion
-            for i in range (len(palabra_list)):
-                cont+=1
-                if palabra_list[i].isnumeric():
-                    try:
-                        if primos.index(int(palabra_list[i])):
-                            pass
-                    except ValueError:
-                        print("\nInvalido. Repite de nuevo")
-                        break
-                else:
-                    try:
-                        if abc.index(palabra_list[i]):
-                            print("\nInvalido. Repite de nuevo")
-                            break
-                    except ValueError:
-                        pass
-
-            #salida
-            if cont == len(palabra_list):
-                break
-
-        #Buscando el indice y cambiarlo por letras
-        for i in range (len(palabra_list)):
+def descod_primos(palabra,abc,primos,cifrado):
+    palabra_list=[]
+    aux=""
+    for i in range(len(palabra)):
+        if not palabra[i].isnumeric():
+            palabra_list.append(aux)
+            palabra_list.append(palabra[i])
+            aux=""
+        else:
+            aux+=palabra[i]
+    print(palabra_list)
+    for i in range(len(palabra_list)):
+        if  not palabra_list[i]=="-":
             try:
-                if palabra_list[i].isnumeric():
-                    descifrado_list.append(abc[primos.index(int(palabra_list[i]))])
-                else:
-                    descifrado_list.append(palabra_list[i])
+                cifrado+=str(abc[primos.index(int(palabra_list[i]))])
             except ValueError:
-                descifrado_list.append(palabra_list[i])
+                cifrado+=str(palabra_list[i])
+    return cifrado
 
-        #Convertir una lista en un string
-        for i in range(len(palabra_list)):
-            if palabra_list[i]!="-":
-                descifrado= descifrado + descifrado_list[i]
+def abc_random(sym=""):
+    import random
+    abc="abcdefghijklmnopqrstuvwxyz"
+    abc_list=[]
+    abcr=""
+    list=[]
+    for i in sym:
+        if i not in list:
+            list.append(i)
+    for i in range(len(list)):
+        abc+=list[i]
+    abc_list = random.sample(abc,len(abc))
+    for i in range(len(abc_list)):
+        abcr+=str(abc_list[i])
+    return abcr
 
-        #Impresion final
-        print(f"\nLa palabra descifrada es {descifrado}")
-"""
 def base():
     pass
 
 if __name__=="__main__":
-    """
-    palabra = input("\nEscribe una palabra a cifrar: ")
-    palabra = palabra.lower()
-    while True:
-        try:
-            clave = int(input("\nEscribe la clave de cifrado: "))
-            break
-        except ValueError:
-            print("\nEscribe un Numero Entero")
-    cesar(palabra,clave,0)
-    """
-    pass
+    def cifrado():
+        palabra = input("\nEscribe una palabra a cifrar/descifrar: ")
+        palabra = palabra.lower()
+        """
+        while True:
+            try:
+                clave = int(input("\nEscribe la clave de cifrado: "))
+                break
+            except ValueError:
+                print("\nEscribe un Numero Entero")
+        """
+        while True:
+            quest=input("\nDescifrar o cifrar? \n\n Opciones: \n\n1. Cifrar \n2.Descifrar\nOpcion: ")
+            if quest=="1":
+                print(f"\nLa palabra cifrada es {primos(palabra,1)}")
+                break
+            if quest =="2":
+                print(f"\nLa palabra descifrada es {primos(palabra,2)}")
+                break
+            print("Escribe una opcion valida")
