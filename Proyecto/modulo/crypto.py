@@ -1,14 +1,23 @@
 def cesar(palabra,numero,clave=0,abc="abcdefghijklmnopqrstuvwxyz"):
-    if not abc=="abcdefghijklmnopqrstuvwxyz":
-        abc2="abcdefghijklmnopqrstuvwxyz"
-    else:
-        abc2==abc
+    abc2="abcdefghijklmnopqrstuvwxyz"
+    sym=""
     cifrado=""
+    if abc!="abcdefghijklmnopqrstuvwxyz":
+        for i in abc:
+            if i not in abc2:
+                sym+=i
+    if  abc!="abcdefghijklmnopqrstuvwxyz" and numero==1:
+        abc2="abcdefghijklmnopqrstuvwxyz"+sym
+    if abc!="abcdefghijklmnopqrstuvwxyz" and numero==2:
+        abc2=abc
+        abc="abcdefghijklmnopqrstuvwxyz"+sym
     for i in range (len(palabra)):
         try:
             cifrado+=abc2[(abc.index(palabra[i])+(((-1)**numero)*(clave)))%len(abc)]
         except ValueError:
             cifrado+=palabra[i]
+        except IndexError:
+            pass
     return cifrado
 
 def primos(palabra,numero,abc="abcdefghijklmnopqrstuvwxyz"):
@@ -58,7 +67,6 @@ def descod_primos(palabra,abc,primos,cifrado):
             aux=""
         else:
             aux+=palabra[i]
-    print(palabra_list)
     for i in range(len(palabra_list)):
         if  not palabra_list[i]=="-":
             try:
@@ -83,27 +91,29 @@ def abc_random(sym=""):
         abcr+=str(abc_list[i])
     return abcr
 
-def base():
-    pass
+# def base():
+#    pass
 
 if __name__=="__main__":
     def cifrado():
         palabra = input("\nEscribe una palabra a cifrar/descifrar: ")
         palabra = palabra.lower()
-        """
+
         while True:
             try:
                 clave = int(input("\nEscribe la clave de cifrado: "))
                 break
             except ValueError:
                 print("\nEscribe un Numero Entero")
-        """
+        abc="e'¿i=p$hÇbo&:`tkdcl¡;qm?jau*^wz.sy,v¨xfn/rg+-_!"
         while True:
             quest=input("\nDescifrar o cifrar? \n\n Opciones: \n\n1. Cifrar \n2.Descifrar\nOpcion: ")
             if quest=="1":
-                print(f"\nLa palabra cifrada es {primos(palabra,1)}")
+                print(f"\nLa palabra cifrada es {primos(palabra,1,abc)}")
                 break
             if quest =="2":
-                print(f"\nLa palabra descifrada es {primos(palabra,2)}")
+                print(f"\nLa palabra descifrada es {primos(palabra,2,abc)}")
                 break
             print("Escribe una opcion valida")
+    cifrado()
+    #print(abc_random("!$%&/=?¿¡'^*+`¨Ç_.,;:-+*/"))

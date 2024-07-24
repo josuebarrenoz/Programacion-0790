@@ -16,8 +16,10 @@ def listortuple(palabra):
 
 def submenu_val1(opcion):
     list=["Entero","Flotante","Complejo"]
-    arg1=input("Escribe ")
-    arg2=listortuple(list[int(opcion)-1])
+    palabra=list[int(opcion)-1]
+    print(palabra)
+    arg1=input("Escribe el numero: ")
+    arg2=listortuple(palabra)
     if opcion=="1":
         pass
 
@@ -37,8 +39,26 @@ def menu_val():
         else:
             print("\nEscribe una opcion valida")
 
-def menu_cry():
+def json_cry(palabra):
     pass
+
+def simp_cry(palabra, *abc):
+    while True:
+        opcion=input("¿Quieres encriptar con Cesar ó Primos?\n\n1. Cesar\n2. Primos")
+
+
+def menu_cry():
+    palabra = input("\nEscribe una palabra a cifrar/descifrar: ")
+    while True:
+        opcion=input("¿Quieres encriptar bajo un archivo Json? (s/n)")
+        if opcion.lower() == "y":
+            json_cry(palabra)
+            break
+        elif opcion.lower()=="n":
+            simp_cry(palabra)
+            break
+        else:
+            print("Escriba un valor valido")
 
 
 def menu_grande():

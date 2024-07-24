@@ -10,6 +10,8 @@ def ition(func):
             print("Escriba un valor valido")
 
 
+
+
 def prueba():
     print("hola mundo")
     print(2+2)
