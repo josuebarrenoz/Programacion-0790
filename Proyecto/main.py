@@ -6,48 +6,81 @@ import json
 
 def listortuple(palabra):
     while True:
-        opcion=input(f"¿El rango a evaluar el {palabra} que es?\n\n1.Lista\n2.Tupla\n\nEscribe la opcion: ")
+        opcion=input(f"\nEl rango a evaluar del numero {palabra} es una:\n\n1.Lista\n2.Tupla\n\nEscribe la opcion: ")
         if opcion=="1":
-            arg1=float(input("Escribe el primer valor: "))
-            arg2=float(input("Escribe el segundo valor: "))
+            arg1=float(input("\nEscribe el primer valor: "))
+            arg2=float(input("\nEscribe el segundo valor: "))
             return [arg1,arg2]
         elif opcion=="2":
-            arg1=float(input("Escribe el primer valor: "))
-            arg2=float(input("Escribe el segundo valor: "))
+            arg1=float(input("\nscribe el primer valor: "))
+            arg2=float(input("\nEscribe el segundo valor: "))
             return (arg1,arg2)
         else:
             print("\nEscribe una opcion valida")
 
-
 def submenu_val1(opcion):
-    list=["Entero","Flotante","Complejo"]
+    list=["entero","flotante","complejo"]
     palabra=list[int(opcion)-1]
-    print(palabra)
-    arg1=input("Escribe el numero: ")
+    arg1=input("\nEscribe el numero: ")
     arg2=listortuple(palabra)
     if opcion=="1":
         try:
             arg1=int(arg1)
+            print(val.valInt(arg1,arg2))
         except ValueError:
             print(False)
-        print(val.valInt(arg1,arg2))
     elif opcion=="2":
         try:
             arg1=float(arg1)
+            print(val.valFloat(arg1,arg2))
         except ValueError:
             print(False)
-        print(val.valFloat(arg1,arg2))
     elif opcion=="3":
         try:
-            arg1=float(arg1)
+            arg1=complex(arg1)
+            print(val.valComplex(arg1,arg2))
         except ValueError:
             print(False)
-        print(val.valComplex(arg1,arg2))
 
+def list_generic():
+    print("\nConstruye la lista...")
+    list=[]
+    while True:
+        try:
+            num=input("\nEscribe un numero: ")
+            list.append(float(num))
+        except ValueError:
+            print("\nError de Valor, Escribe un numero")
+        if input("\nDesea agregar mas numeros? (y/): ").lower()!="y":
+            break
+    return list
 
+def submenu_val2():
+    arg1=list_generic()
+    while True:
+        opcion=input("¿Que deseas evaluar en la lista?\n\n1. Longitud\n2. Valor\n\nEscribe una opcion: ")
+        if opcion=="1":
+            arg3="len"
+            break
+        if opcion=="2":
+            arg3="value"
+            break
+        print("\nEscribe una opcion valida")
+    if arg3=="len":
+        while True:
+            try:
+                arg2=int(input("\nEscribe la longitud: "))
+                print(val.valList(arg1,arg2,arg3))
+                break
+            except ValueError:
+                print("\nEscribe un numero entero")
+    if arg3=="value":
+        arg2=list_generic()
+        print(val.valList(arg1,arg2,arg3))
+    
 def menu_val():
     while True:
-        opcion=input("¿Que desea validar?\n\n1.Entero\n2.Flotante\n3.Complejo\n4.Lista\n\nEscribe la opcion: ")
+        opcion=input("\n¿Que desea validar?\n\n1.Entero\n2.Flotante\n3.Complejo\n4.Lista\n\nEscribe la opcion: ")
         if opcion=="1" or opcion=="2" or opcion=="3":
             submenu_val1(opcion)
             break
@@ -58,7 +91,6 @@ def menu_val():
             print("\nEscribe una opcion valida")
 
 def json_cry(palabra):
-    aux=False
     try:
         with open ("cifrados.json","r") as file:
             data = json.load(file)
@@ -69,11 +101,19 @@ def json_cry(palabra):
             data = {}
         file.close()
         print("\nArchivo creado automaticamente")
-        aux=True
-    if aux:
+    if data=={}:
         sym=str(input("Escribas los simbolos que desea poner en su clave(Presionar enter es valido): "))
         abc = str(cry.abc_random(sym))
         data={"abecedario":abc}
+        data2=data
+        with open ("cifrados.json","w") as file:
+            data2 = json.dump(data,file)
+        file.close()
+    if data["abecedario"]=="":
+        print("\nNo tiene clave generada. Generando una...")
+        sym=str(input("Escribas los simbolos que desea poner en su clave(Presionar enter es valido): "))
+        abc = str(cry.abc_random(sym))
+        data["abecedario"]=abc
         data2=data
         with open ("cifrados.json","w") as file:
             data2 = json.dump(data,file)
@@ -155,5 +195,3 @@ if __name__=="__main__":
     run()
     repet.ition(run)
     msg.final()
-
-
