@@ -8,9 +8,13 @@ def listortuple(palabra):
     while True:
         opcion=input(f"¿El rango a evaluar el {palabra} que es?\n\n1.Lista\n2.Tupla\n\nEscribe la opcion: ")
         if opcion=="1":
-            return []
+            arg1=float(input("Escribe el primer valor: "))
+            arg2=float(input("Escribe el segundo valor: "))
+            return [arg1,arg2]
         elif opcion=="2":
-            return ()
+            arg1=float(input("Escribe el primer valor: "))
+            arg2=float(input("Escribe el segundo valor: "))
+            return (arg1,arg2)
         else:
             print("\nEscribe una opcion valida")
 
@@ -22,7 +26,23 @@ def submenu_val1(opcion):
     arg1=input("Escribe el numero: ")
     arg2=listortuple(palabra)
     if opcion=="1":
-        pass
+        try:
+            arg1=int(arg1)
+        except ValueError:
+            print(False)
+        print(val.valInt(arg1,arg2))
+    elif opcion=="2":
+        try:
+            arg1=float(arg1)
+        except ValueError:
+            print(False)
+        print(val.valFloat(arg1,arg2))
+    elif opcion=="3":
+        try:
+            arg1=float(arg1)
+        except ValueError:
+            print(False)
+        print(val.valComplex(arg1,arg2))
 
 
 def menu_val():
@@ -32,7 +52,7 @@ def menu_val():
             submenu_val1(opcion)
             break
         elif opcion=="4":
-            pass
+            submenu_val2()
             break
         else:
             print("\nEscribe una opcion valida")
@@ -60,8 +80,6 @@ def json_cry(palabra):
         file.close()
     simp_cry(palabra, data["abecedario"])
 
-    
-
 def primos_simp_cry(palabra, *abc):
         while True:
             quest=input("\nDescifrar o cifrar? \n\nOpciones: \n\n1. Cifrar \n2.Descifrar\n\nOpcion: ")
@@ -72,7 +90,6 @@ def primos_simp_cry(palabra, *abc):
                 print(f"\nLa palabra descifrada es {cry.primos(palabra,2,*abc)}")
                 break
             print("\nEscribe una opcion valida")
-
 
 def cesar_simp_cry(palabra, *abc):
     while True:
@@ -91,7 +108,6 @@ def cesar_simp_cry(palabra, *abc):
             break
         print("\nEscribe una opcion valida")
 
-
 def simp_cry(palabra, *abc):
     while True:
         opcion=input("¿Quieres encriptar con Cesar ó Primos?\n\n1. Cesar\n2. Primos\n\nEscribe una opcion: ")
@@ -102,7 +118,6 @@ def simp_cry(palabra, *abc):
             primos_simp_cry(palabra,*abc)
             break
         print("\nEscribe una opcion valida")
-
 
 def menu_cry():
     palabra = input("\nEscribe una palabra a cifrar/descifrar: ")
@@ -117,7 +132,6 @@ def menu_cry():
             break
         else:
             print("Escriba un valor valido")
-
 
 def menu_grande():
     while True:
