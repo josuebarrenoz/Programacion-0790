@@ -6,7 +6,7 @@ import json
 
 def listortuple(palabra):
     while True:
-        opcion=input("¿El rango a evaluar el {palabra} que es?\n\n1.Lista\n2.Tupla\n\nEscribe la opcion: ")
+        opcion=input(f"¿El rango a evaluar el {palabra} que es?\n\n1.Lista\n2.Tupla\n\nEscribe la opcion: ")
         if opcion=="1":
             return []
         elif opcion=="2":
@@ -38,6 +38,7 @@ def menu_val():
             print("\nEscribe una opcion valida")
 
 def json_cry(palabra):
+    aux=False
     try:
         with open ("cifrados.json","r") as file:
             data = json.load(file)
@@ -47,6 +48,19 @@ def json_cry(palabra):
         with open ("cifrados.json","w") as file:
             data = {}
         file.close()
+        print("\nArchivo creado automaticamente")
+        aux=True
+    if aux:
+        sym=str(input("Escribas los simbolos que desea poner en su clave(Presionar enter es valido): "))
+        abc = str(cry.abc_random(sym))
+        data={"abecedario":abc}
+        data2=data
+        with open ("cifrados.json","w") as file:
+            data2 = json.dump(data,file)
+        file.close()
+    simp_cry(palabra, data["abecedario"])
+
+    
 
 def primos_simp_cry(palabra, *abc):
         while True:

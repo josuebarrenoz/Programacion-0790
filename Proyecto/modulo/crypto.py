@@ -109,11 +109,11 @@ if __name__=="__main__":
         while True:
             quest=input("\nDescifrar o cifrar? \n\n Opciones: \n\n1. Cifrar \n2.Descifrar\nOpcion: ")
             if quest=="1":
-                print(f"\nLa palabra cifrada es {primos(palabra,1,abc)}")
+                print(f"\nLa palabra cifrada es {cesar(palabra,1,clave,abc)}")
                 break
             if quest =="2":
-                print(f"\nLa palabra descifrada es {primos(palabra,2,abc)}")
+                print(f"\nLa palabra descifrada es {cesar(palabra,2,clave,abc)}")
                 break
             print("Escribe una opcion valida")
     cifrado()
-    #print(abc_random("!$%&/=?¿¡'^*+`¨Ç_.,;:-+*/"))
+    print(abc_random("!$%&/=?¿¡'^*+`¨Ç_.,;:-+*/"))

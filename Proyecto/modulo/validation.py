@@ -7,7 +7,7 @@ def valInt(arg1,arg2=True):
         raise TypeError
     if len(arg2)!=2:
         return False
-    if not (isinstance(arg2[0],int) and isinstance(arg2[1],int)):
+    if not (isinstance(arg2[0],(int,float)) and isinstance(arg2[1],(int,float))):
         return False
     if arg2[1]<arg2[0]:
         raise ValueError
