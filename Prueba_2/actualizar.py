@@ -14,15 +14,21 @@ def producto(data):
                 nombre=val.nombre()
                 info=data.pop(producto)
                 data[nombre]=info
+                print("\nProducto modificado exitosamente")
                 return data
             elif opcion=="2":
                 precio = val.precio()
                 data[producto]["Precio"]=precio
+                print("\nPrecio modificado exitosamente")
                 return data
             elif opcion=="3":
                 cantidad = val.cantidad()
                 data[producto]["Cantidad"] = cantidad
+                print("\nCantidad modificada exitosamente")
                 return data
         else:
             print(f"\nEl producto nombrado {producto} no se encuentra en el inventario")
             return data
+
+if __name__=="__main__":
+    print("\nEsto es un modulo del programa CRUD. Busca en la carpeta el archivo main.py y ejecutalo")

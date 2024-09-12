@@ -1,3 +1,4 @@
+# mooulo que ayuda a repetir el programa
 def ition(func,frase1="\nRepetimos el programa? (y/n): ",frase2="\nGracias por usar el programa"):
     while True:
         rep = input(frase1)
@@ -9,12 +10,5 @@ def ition(func,frase1="\nRepetimos el programa? (y/n): ",frase2="\nGracias por u
         else:
             print("\nEscriba un valor valido")
 
-def prueba():
-    print("hola mundo")
-    print(2+2)
-
-
 if __name__=="__main__":
-
-    prueba()
-    ition(prueba)
+    print("\nEsto es un modulo del programa CRUD. Busca en la carpeta el archivo main.py y ejecutalo")

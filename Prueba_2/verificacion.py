@@ -31,3 +31,6 @@ def cantidad():
             print("La cantidad debe ser un número entero positivo.")
         except TypeError:
             print("La cantidad debe ser un número.")
+
+if __name__=="__main__":
+    print("\nEsto es un modulo del programa CRUD. Busca en la carpeta el archivo main.py y ejecutalo")

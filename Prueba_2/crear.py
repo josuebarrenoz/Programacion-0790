@@ -15,3 +15,5 @@ def producto(data):
         data[nombre]= {"Precio":precio,"Cantidad":cantidad}
         return data
 
+if __name__=="__main__":
+    print("\nEsto es un modulo del programa CRUD. Busca en la carpeta el archivo main.py y ejecutalo")

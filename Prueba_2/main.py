@@ -42,7 +42,3 @@ if __name__ == "__main__":
     # Llamar al programa principal con los datos del inventario.
     run()
     repet.ition(run)
-
-
-
-

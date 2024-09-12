@@ -9,3 +9,6 @@ def producto(data):
         return data
     else:
         print("\nEste producto no se encuentra en la lista.")
+
+if __name__=="__main__":
+    print("\nEsto es un modulo del programa CRUD. Busca en la carpeta el archivo main.py y ejecutalo")
