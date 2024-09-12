@@ -4,7 +4,20 @@ import json
 import menu, repet, crear, mostrar, actualizar, eliminar
 
 # Función principal del programa. Recibe los datos del inventario y llama al menu principal.
-def run(data):
+def run():
+    # Leer los datos del inventario desde el archivo JSON.
+    try:
+        with open ("inventario.json","r") as file:
+            data = json.load(file)
+        file.close()
+    except FileNotFoundError:
+        print("\nNo existe ningun archivo Json con el nombre inventario.json ")
+        with open ("inventario.json","w") as file:
+            data = {}
+        file.close()
+        print("\nArchivo creado automaticamente")
+
+    #opciones del Programa
     while True:
         opcion=menu.principal()
         if opcion=="1":
@@ -20,27 +33,16 @@ def run(data):
         elif opcion=="6":
             break
 
-if __name__ == "__main__":
-
-    # Leer los datos del inventario desde el archivo JSON.
-    try:
-        with open ("inventario.json","r") as file:
-            data = json.load(file)
-        file.close()
-    except FileNotFoundError:
-        print("\nNo existe ningun archivo Json con el nombre inventario.json ")
-        with open ("inventario.json","w") as file:
-            data = {}
-        file.close()
-        print("\nArchivo creado automaticamente")
-
-    # Llamar al programa principal con los datos del inventario.
-    run(data)
-    repet.ition(run)
-
     # Guardar los datos del inventario en el archivo JSON.
     with open ("inventario.json","w") as file:
-        data = json.dump(file)
+        data = json.dump(data,file)
     file.close()
+
+if __name__ == "__main__":
+    # Llamar al programa principal con los datos del inventario.
+    run()
+    repet.ition(run)
+
+
 
 

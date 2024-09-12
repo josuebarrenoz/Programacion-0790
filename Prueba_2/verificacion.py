@@ -1,5 +1,4 @@
 #Este modulo verifica los datos para almacenar en la data
-
 def nombre():
     while True:
         try:

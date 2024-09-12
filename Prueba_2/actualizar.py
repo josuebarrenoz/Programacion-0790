@@ -3,7 +3,8 @@ import menu
 
 def producto(data):
         #Primero pedir la info
-        producto = input("/nIngrese producto a modificar: ")
+        producto = input("\nIngrese producto a modificar: ")
+        producto = producto.lower()
         #Luego verificar si el producto existe en el inventario
         if producto in data:
             #Consultar que tipo de Modificacion se desea hacer al producto
@@ -23,5 +24,5 @@ def producto(data):
                 data[producto]["Cantidad"] = cantidad
                 return data
         else:
-            print(f"{producto} no se encuentra en el inventario")
+            print(f"\nEl producto nombrado {producto} no se encuentra en el inventario")
             return data
