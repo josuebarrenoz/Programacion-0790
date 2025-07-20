@@ -164,7 +164,7 @@ def menu_cry():
     palabra=palabra.lower()
     while True:
         opcion=input("\n¿Quieres encriptar bajo un archivo Json? (s/n): ")
-        if opcion.lower() == "y":
+        if opcion.lower() == "s":
             json_cry(palabra)
             break
         elif opcion.lower()=="n":
